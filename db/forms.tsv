@@ -1,5 +1,6 @@
 form	lemma	conf	source	learned_on	note
 ale	ale	2	duolingo	2026-10-12	
+angielsku	angielski	2	duolingo	2026-10-13	
 bardzo	bardzo	3	duolingo	2026-10-12	
 chleb	chleb	3	duolingo	2026-10-09	
 chłopcem	chłopiec	2	duolingo	2026-10-09	
@@ -11,10 +12,11 @@ dobrze	dobrze	2	duolingo	2026-10-12
 dzieci	dziecko	2	duolingo	2026-10-09	
 dziecko	dziecko	2	duolingo	2026-10-09	
 dziewczynka	dziewczynka	2	duolingo	2026-10-09	
-dziewczynki	dziewczynka	2	duolingo	2026-10-09	
 dziewczynką	dziewczynka	2	duolingo	2026-10-09	
+dziewczynki	dziewczynka	2	duolingo	2026-10-09	
 dzięki	dzięki	2	other	2026-10-13	Casual. Use dziękuję when being polite.
 dziękuję	dziękuję	2	other	2026-10-13	Literally 'I thank', the -ę is the I-ending of dziękować.
+herbata	herbata	3	other	2026-10-13	
 i	i	3	duolingo	2026-10-09	
 ja	ja	2	duolingo	2026-10-09	
 jabłko	jabłko	3	duolingo	2026-10-09	
@@ -25,36 +27,58 @@ jem	jeść	3	duolingo	2026-10-09
 jest	być	2	duolingo	2026-10-09	
 jestem	być	2	duolingo	2026-10-09	
 jesteś	być	2	duolingo	2026-10-09	
+kaczka	kaczka	1	duolingo	2026-10-13	
+kawa	kawa	3	other	2026-10-13	
 kobieta	kobieta	3	duolingo	2026-10-09	
-kobiety	kobieta	3	duolingo	2026-10-09	
 kobietą	kobieta	2	duolingo	2026-10-09	
+kobiety	kobieta	3	duolingo	2026-10-09	
+koń	koń	1	duolingo	2026-10-13	
+kot	kot	1	duolingo	2026-10-13	
+krab	krab	1	duolingo	2026-10-13	
 kto	kto	3	duolingo	2026-10-12	
+lew	lew	1	duolingo	2026-10-13	Drops the -e- when it inflects: lew, lwa, lwy.
 lubi	lubić	2	duolingo	2026-10-09	
-lubimy	lubić	2	duolingo	2026-10-09	
-lubisz	lubić	3	duolingo	2026-10-09	
 lubią	lubić	2	duolingo	2026-10-09	
 lubię	lubić	2	duolingo	2026-10-09	
+lubimy	lubić	2	duolingo	2026-10-09	
+lubisz	lubić	3	duolingo	2026-10-09	
 ma	mieć	2	duolingo	2026-10-09	
 macie	mieć	2	duolingo	2026-10-09	
 mają	mieć	2	duolingo	2026-10-09	
 mam	mieć	3	duolingo	2026-10-09	
 mamy	mieć	3	duolingo	2026-10-09	
 masz	mieć	3	duolingo	2026-10-09	
-mleko	mleko	3	duolingo	2026-10-09	
-my	my	2	duolingo	2026-10-09	
 mężczyzna	mężczyzna	3	duolingo	2026-10-09	
 mężczyzną	mężczyzna	2	duolingo	2026-10-09	
 mężczyźni	mężczyzna	3	duolingo	2026-10-09	
+mleko	mleko	3	duolingo	2026-10-09	
+mówi	mówić	1	duolingo	2026-10-13	
+mówię	mówić	1	duolingo	2026-10-13	
+mówisz	mówić	1	duolingo	2026-10-13	
+my	my	2	duolingo	2026-10-09	
+mysz	mysz	1	duolingo	2026-10-13	
 nie	nie	3	duolingo	2026-10-12	
 on	on	3	duolingo	2026-10-09	
 ona	ona	3	duolingo	2026-10-09	
 one	one	2	duolingo	2026-10-09	
 oni	oni	2	duolingo	2026-10-09	
+pa	pa	2	duolingo	2026-10-13	Very casual. Use do widzenia when being polite.
+pająk	pająk	1	duolingo	2026-10-13	
+pies	pies	1	duolingo	2026-10-13	Drops the -ie- when it inflects: pies, psa, psy.
 pije	pić	2	duolingo	2026-10-09	
 piję	pić	2	duolingo	2026-10-09	
+po	po	2	duolingo	2026-10-13	
+polsku	polski	2	duolingo	2026-10-13	
+przepraszam	przepraszam	1	duolingo	2026-10-13	Literally 'I apologize', first-person of przepraszać.
+ptak	ptak	1	duolingo	2026-10-13	
+ryba	ryba	1	duolingo	2026-10-13	
+słoń	słoń	1	duolingo	2026-10-13	
 tak	tak	3	duolingo	2026-10-12	
 ty	ty	3	duolingo	2026-10-09	
+tygrys	tygrys	1	duolingo	2026-10-13	
 wiem	wiedzieć	1	duolingo	2026-10-12	
+witaj	witaj	1	duolingo	2026-10-13	Imperative of witać. Informal.
 wodę	woda	3	duolingo	2026-10-09	
 wy	wy	2	duolingo	2026-10-09	
 zawsze	zawsze	1	duolingo	2026-10-12	
+zwierzę	zwierzę	1	duolingo	2026-10-13	Neuter. Irregular plural: zwierzęta.

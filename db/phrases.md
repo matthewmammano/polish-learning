@@ -5,45 +5,6 @@ the dialogue, newlines preserved, speaker labels in bare uppercase.
 
 A dialogue must read like a real exchange. See CLAUDE.md rule 4.
 
-## Jestem kobietą.
-- meaning: I am a woman.
-- conf: 2
-- source: duolingo
-- learned_on: 2026-10-09
-- note: być plus the instrumental.
-
-```
-TY: Jesteś mężczyzną?
-JA: Nie, jestem kobietą.
-TY: Przepraszam!
-```
-
-## Piję wodę.
-- meaning: I drink water.
-- conf: 2
-- source: duolingo
-- learned_on: 2026-10-09
-- note: Direct object takes the accusative.
-
-```
-MAYA: Co pijesz?
-JA: Piję wodę.
-MAYA: A ja piję mleko.
-```
-
-## On je jabłko.
-- meaning: He eats an apple.
-- conf: 2
-- source: duolingo
-- learned_on: 2026-10-09
-- note: Neuter accusative looks like the nominative.
-
-```
-MAYA: Co robi Tomek?
-JA: On je jabłko.
-MAYA: A ja jem ciasteczka.
-```
-
 ## Cześć
 - meaning: Hi / bye (informal)
 - conf: 3
@@ -127,7 +88,7 @@ JA: Też dobrze, dziękuję.
 - conf: 2
 - source: duolingo
 - learned_on: 2026-10-12
-- note: Formal counterpart to Cześć.
+- note: widzenia is the genitive of widzenie, used only in this phrase.
 
 ```
 JA: Dziękuję bardzo!
@@ -185,4 +146,32 @@ MAYA: Maya. Miło mi!
 MAYA: To jest Tomek.
 JA: Miło mi.
 TOMEK: Miło mi bardzo!
+```
+
+## po polsku
+- meaning: in Polish
+- conf: 2
+- source: duolingo
+- learned_on: 2026-10-13
+- note: polsku is an archaic dative of polski, kept alive only by this phrase.
+
+```
+MAYA: Cześć!
+JA: Cześć! Mówisz po polsku?
+MAYA: Tak, mówię po polsku.
+JA: Bardzo dobrze!
+```
+
+## po angielsku
+- meaning: in English
+- conf: 2
+- source: duolingo
+- learned_on: 2026-10-13
+- note: angielsku is an archaic dative of angielski, kept alive only by this phrase.
+
+```
+MAYA: Dzień dobry!
+JA: Dzień dobry. Mówisz po angielsku?
+MAYA: Tak, mówię po angielsku.
+JA: Dziękuję!
 ```
