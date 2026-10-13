@@ -109,12 +109,17 @@ class Validator:
         for phrase, dialogue, _ in self._phrases:
             if not dialogue:
                 continue
-            missing = self._unknown(dialogue_words(dialogue))
+            missing = self._unknown(dialogue_words(self._strip_phrases(dialogue)))
             if missing:
                 yield Finding(
                     "dialogue-words",
                     f"dialogue for {phrase!r} uses unknown words: {', '.join(missing)}",
                 )
+
+    def _strip_phrases(self, dialogue: str) -> str:
+        for phrase, _, _ in self._phrases:
+            dialogue = dialogue.replace(phrase, "")
+        return dialogue
 
     def _lemma_in_dictionary(self) -> Iterator[Finding]:
         if self._dict is None:

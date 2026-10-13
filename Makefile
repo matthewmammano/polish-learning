@@ -3,10 +3,8 @@
 
 all: polish.db validate
 
-polish.db: db/schema.sql db/words.sql
-	rm -f $@
-	sqlite3 $@ < db/schema.sql
-	sqlite3 $@ < db/words.sql
+polish.db: db/schema.sql db/forms.tsv db/notes.tsv db/phrases.md
+	@python3 -m db.build
 
 validate: polish.db
 	@python3 -m db.validate

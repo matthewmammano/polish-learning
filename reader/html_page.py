@@ -59,7 +59,10 @@ def render_html(
     text: str, vocab: Vocabulary, title: str, dictionary: Dictionary | None = None
 ) -> str:
     body, words = _markup(text, vocab)
-    hint = "click any word  ·  <kbd>n</kbd> next unknown  ·  <kbd>p</kbd> previous  ·  <kbd>esc</kbd> close"
+    hint = (
+        "click any word  ·  <kbd>n</kbd> next unknown  ·  <kbd>p</kbd> previous"
+        "  ·  <kbd>s</kbd> say it  ·  <kbd>esc</kbd> close"
+    )
     return (
         "<!doctype html><html lang=pl><head><meta charset=utf-8>"
         '<meta name=viewport content="width=device-width,initial-scale=1">'

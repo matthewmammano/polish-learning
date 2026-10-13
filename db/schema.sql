@@ -22,5 +22,6 @@ CREATE TABLE phrases (
   dialogue     TEXT,
   learned_on   TEXT NOT NULL,
   source       TEXT NOT NULL CHECK (source IN ('duolingo', 'maya', 'other')),
+  confidence   INTEGER NOT NULL DEFAULT 2 CHECK (confidence BETWEEN 1 AND 3),
   note         TEXT
 );

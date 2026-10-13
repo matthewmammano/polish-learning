@@ -21,9 +21,12 @@ JOIN entries e ON e.id = f.entry_id
 WHERE f.form = ?1
 ORDER BY
   e.word = ?2 DESC,
+  e.word = ?1 DESC,
   e.pos = 'character',
-  f.tags = '[]',
   f.tags LIKE '%error-unrecognized-form%',
+  json_array_length(e.examples) DESC,
+  json_array_length(e.glosses) DESC,
+  f.tags = '[]',
   e.id
 LIMIT ?3
 """

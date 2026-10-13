@@ -101,19 +101,49 @@ w.active { outline:2px solid var(--ink); outline-offset:1px; }
 #panel .mine { font:0.62rem system-ui,sans-serif; text-transform:uppercase;
   letter-spacing:.09em; border:1px solid var(--line); border-radius:2px;
   padding:.1rem .35rem; vertical-align:middle; color:var(--faint); }
+#panel .word { font-size:1.5rem; margin:0 0 .2rem; }
+#panel .say { font:0.65rem system-ui,sans-serif; text-transform:uppercase;
+  letter-spacing:.09em; border:1px solid var(--line); border-radius:2px;
+  background:none; color:var(--faint); padding:.18rem .45rem; cursor:pointer;
+  vertical-align:middle; margin-left:.5rem; }
+#panel .say:hover { color:var(--ink); border-color:var(--ink); }
+#panel .say:disabled { opacity:.45; cursor:default; }
 kbd { font:0.75rem system-ui,sans-serif; border:1px solid var(--line);
   border-bottom-width:2px; padding:.05rem .3rem; }
 """
 
 HTML_SCRIPT = """
 const NAV_SELECTOR = 'w.weak, w.new';
+const SPEAK_LANG = 'pl';
+const SPEAK_RATE = 0.85;
 const defs = JSON.parse(document.getElementById('defs').textContent);
+if ('speechSynthesis' in window) speechSynthesis.getVoices();
 const panel = document.getElementById('panel');
 const inner = panel.querySelector('.inner');
 const unknown = [...document.querySelectorAll(NAV_SELECTOR)];
 let cursor = -1;
 
 function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function polishVoice() {
+  return speechSynthesis.getVoices().find(v => v.lang.toLowerCase().startsWith(SPEAK_LANG));
+}
+
+function speak(text, button) {
+  const voice = polishVoice();
+  if (!voice) {
+    button.textContent = 'no polish voice';
+    button.disabled = true;
+    return;
+  }
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.voice = voice;
+  utterance.lang = voice.lang;
+  utterance.rate = SPEAK_RATE;
+  utterance.onerror = e => { button.textContent = 'error: ' + e.error; };
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utterance);
+}
 
 function sense(s) {
   const tags = s.tags.length ? s.tags.join(', ') : '';
@@ -132,10 +162,19 @@ function show(el) {
   el.classList.add('active');
   cursor = unknown.indexOf(el);
   const d = defs[el.dataset.w];
-  inner.innerHTML = d
+  const word = el.textContent;
+  const head = '<p class=word>' + esc(word) +
+    '<button class=say type=button>say</button></p>';
+  inner.innerHTML = head + (d
     ? d.map(sense).join('')
-    : '<p class=lemma>' + esc(el.textContent) + '</p>' +
-      '<p class=miss>Not in the dictionary. Likely a proper name or an archaic form.</p>';
+    : '<p class=miss>Not in the dictionary. Likely a proper name or an archaic form.</p>');
+  const button = inner.querySelector('.say');
+  if (!('speechSynthesis' in window)) {
+    button.textContent = 'no speech api';
+    button.disabled = true;
+  } else {
+    button.addEventListener('click', () => speak(word, button));
+  }
   panel.classList.add('open');
   el.scrollIntoView({block: 'center', behavior: 'smooth'});
 }
@@ -152,6 +191,8 @@ document.addEventListener('keydown', e => {
     show(unknown[(cursor + 1) % unknown.length]);
   } else if (e.key === 'p' && unknown.length) {
     show(unknown[(cursor - 1 + unknown.length) % unknown.length]);
+  } else if (e.key === 's' && panel.classList.contains('open')) {
+    inner.querySelector('.say').click();
   }
 });
 """
