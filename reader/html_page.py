@@ -60,7 +60,8 @@ def render_html(
 ) -> str:
     body, words = _markup(text, vocab)
     hint = (
-        "click any word  ·  <kbd>n</kbd> next unknown  ·  <kbd>p</kbd> previous"
+        "click a word  ·  shift-click for a span  ·  <kbd>n</kbd> next unknown"
+        "  ·  <kbd>p</kbd> previous  ·  <kbd>\u2190</kbd><kbd>\u2192</kbd> page"
         "  ·  <kbd>s</kbd> say it  ·  <kbd>esc</kbd> close"
     )
     return (

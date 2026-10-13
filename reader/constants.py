@@ -101,26 +101,45 @@ w.active { outline:2px solid var(--ink); outline-offset:1px; }
 #panel .mine { font:0.62rem system-ui,sans-serif; text-transform:uppercase;
   letter-spacing:.09em; border:1px solid var(--line); border-radius:2px;
   padding:.1rem .35rem; vertical-align:middle; color:var(--faint); }
-#panel .word { font-size:1.5rem; margin:0 0 .2rem; }
-#panel .say { font:0.65rem system-ui,sans-serif; text-transform:uppercase;
-  letter-spacing:.09em; border:1px solid var(--line); border-radius:2px;
-  background:none; color:var(--faint); padding:.18rem .45rem; cursor:pointer;
-  vertical-align:middle; margin-left:.5rem; }
-#panel .say:hover { color:var(--ink); border-color:var(--ink); }
-#panel .say:disabled { opacity:.45; cursor:default; }
+#panel .say, #panel .arrow { font:0.65rem system-ui,sans-serif;
+  text-transform:uppercase; letter-spacing:.09em; border:1px solid var(--line);
+  border-radius:2px; background:none; color:var(--faint); padding:.18rem .45rem;
+  cursor:pointer; vertical-align:middle; }
+#panel .say:hover, #panel .arrow:hover { color:var(--ink); border-color:var(--ink); }
+#panel .say:disabled, #panel .arrow:disabled { opacity:.45; cursor:default; }
+#panel .arrow { font-size:.9rem; line-height:1; padding:.1rem .4rem; }
+#panel .head { display:flex; align-items:center; gap:.5rem; flex-wrap:wrap;
+  margin:0 0 .9rem; }
+#panel .phrase { font-size:1.5rem; margin-right:.25rem; }
+#panel .count { font:0.7rem system-ui,sans-serif; color:var(--faint); }
+#panel .word { font:0.7rem system-ui,sans-serif; text-transform:uppercase;
+  letter-spacing:.09em; color:var(--faint); margin:0 0 .5rem; }
+#panel .cols { display:flex; gap:1.5rem; align-items:flex-start; }
+#panel .col { flex:1 1 0; min-width:0; }
+#panel .col + .col { border-left:1px solid var(--line); padding-left:1.5rem; }
+#panel.multi .inner { max-width:64rem; }
+@media (max-width:46rem) { #panel .cols { flex-direction:column; }
+  #panel .col + .col { border-left:0; padding-left:0; border-top:1px solid var(--line);
+    padding-top:1rem; } }
 kbd { font:0.75rem system-ui,sans-serif; border:1px solid var(--line);
   border-bottom-width:2px; padding:.05rem .3rem; }
 """
 
-HTML_SCRIPT = """
+HTML_SCRIPT = r"""
 const NAV_SELECTOR = 'w.weak, w.new';
 const SPEAK_LANG = 'pl';
-const SPEAK_RATE = 0.85;
+const SPEAK_RATE = 0.65;
+const MAX_COLUMNS = 3;
+const MISSING = 'Not in the dictionary. Likely a proper name or an archaic form.';
 const defs = JSON.parse(document.getElementById('defs').textContent);
 if ('speechSynthesis' in window) speechSynthesis.getVoices();
 const panel = document.getElementById('panel');
 const inner = panel.querySelector('.inner');
+const words = [...document.querySelectorAll('.text w')];
 const unknown = [...document.querySelectorAll(NAV_SELECTOR)];
+let anchor = null;
+let span = [];
+let column = 0;
 let cursor = -1;
 
 function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
@@ -157,42 +176,91 @@ function sense(s) {
     '</div>';
 }
 
-function show(el) {
-  document.querySelectorAll('w.active').forEach(w => w.classList.remove('active'));
-  el.classList.add('active');
-  cursor = unknown.indexOf(el);
+function definition(el) {
   const d = defs[el.dataset.w];
-  const word = el.textContent;
-  const head = '<p class=word>' + esc(word) +
-    '<button class=say type=button>say</button></p>';
-  inner.innerHTML = head + (d
-    ? d.map(sense).join('')
-    : '<p class=miss>Not in the dictionary. Likely a proper name or an archaic form.</p>');
+  return '<div class=col><p class=word>' + esc(el.textContent) + '</p>' +
+    (d ? d.map(sense).join('') : '<p class=miss>' + MISSING + '</p>') + '</div>';
+}
+
+function spanText() {
+  const range = document.createRange();
+  range.setStartBefore(span[0]);
+  range.setEndAfter(span[span.length - 1]);
+  return range.toString().replace(/\s+/g, ' ').trim();
+}
+
+function page(step) {
+  const last = Math.max(span.length - MAX_COLUMNS, 0);
+  column = Math.min(Math.max(column + step, 0), last);
+  render();
+}
+
+function render() {
+  const visible = span.slice(column, column + MAX_COLUMNS);
+  const text = spanText();
+  const paged = span.length > MAX_COLUMNS;
+  const nav = paged
+    ? '<button class="arrow prev" type=button>&lsaquo;</button>' +
+      '<button class="arrow next" type=button>&rsaquo;</button>' +
+      '<span class=count>' + (column + 1) + '-' + (column + visible.length) +
+      ' of ' + span.length + '</span>'
+    : '';
+  inner.innerHTML = '<p class=head><span class=phrase>' + esc(text) + '</span>' +
+    '<button class=say type=button>' + (span.length > 1 ? 'say all' : 'say') +
+    '</button>' + nav + '</p>' +
+    '<div class=cols>' + visible.map(definition).join('') + '</div>';
   const button = inner.querySelector('.say');
   if (!('speechSynthesis' in window)) {
     button.textContent = 'no speech api';
     button.disabled = true;
   } else {
-    button.addEventListener('click', () => speak(word, button));
+    button.addEventListener('click', () => speak(text, button));
+  }
+  if (paged) {
+    inner.querySelector('.prev').disabled = column === 0;
+    inner.querySelector('.next').disabled = column + MAX_COLUMNS >= span.length;
+    inner.querySelector('.prev').addEventListener('click', () => page(-1));
+    inner.querySelector('.next').addEventListener('click', () => page(1));
   }
   panel.classList.add('open');
+  panel.classList.toggle('multi', span.length > 1);
+}
+
+function show(el, extend) {
+  if (!extend || !anchor) anchor = el;
+  const edges = [words.indexOf(anchor), words.indexOf(el)];
+  span = words.slice(Math.min(...edges), Math.max(...edges) + 1);
+  column = 0;
+  cursor = unknown.indexOf(el);
+  words.forEach(w => w.classList.remove('active'));
+  span.forEach(w => w.classList.add('active'));
+  render();
   el.scrollIntoView({block: 'center', behavior: 'smooth'});
 }
 
 document.querySelector('.text').addEventListener('click', e => {
-  if (e.target.tagName === 'W') show(e.target);
+  if (e.target.tagName !== 'W') return;
+  if (e.shiftKey) getSelection().removeAllRanges();
+  show(e.target, e.shiftKey);
 });
 
 document.addEventListener('keydown', e => {
+  const open = panel.classList.contains('open');
   if (e.key === 'Escape') {
     panel.classList.remove('open');
-    document.querySelectorAll('w.active').forEach(w => w.classList.remove('active'));
+    words.forEach(w => w.classList.remove('active'));
+    span = [];
+    anchor = null;
   } else if (e.key === 'n' && unknown.length) {
-    show(unknown[(cursor + 1) % unknown.length]);
+    show(unknown[(cursor + 1) % unknown.length], false);
   } else if (e.key === 'p' && unknown.length) {
-    show(unknown[(cursor - 1 + unknown.length) % unknown.length]);
-  } else if (e.key === 's' && panel.classList.contains('open')) {
+    show(unknown[(cursor - 1 + unknown.length) % unknown.length], false);
+  } else if (e.key === 's' && open) {
     inner.querySelector('.say').click();
+  } else if (e.key === 'ArrowLeft' && open) {
+    page(-1);
+  } else if (e.key === 'ArrowRight' && open) {
+    page(1);
   }
 });
 """
