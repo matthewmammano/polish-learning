@@ -1,9 +1,6 @@
 form	lemma	conf	source	learned_on	note
 ale	ale	2	duolingo	2026-10-12	
 bardzo	bardzo	3	duolingo	2026-10-12	
-jest	być	2	duolingo	2026-10-09	
-jestem	być	2	duolingo	2026-10-09	
-jesteś	być	2	duolingo	2026-10-09	
 chleb	chleb	3	duolingo	2026-10-09	
 chłopcem	chłopiec	2	duolingo	2026-10-09	
 chłopcy	chłopiec	2	duolingo	2026-10-09	
@@ -16,6 +13,8 @@ dziecko	dziecko	2	duolingo	2026-10-09
 dziewczynka	dziewczynka	2	duolingo	2026-10-09	
 dziewczynki	dziewczynka	2	duolingo	2026-10-09	
 dziewczynką	dziewczynka	2	duolingo	2026-10-09	
+dzięki	dzięki	2	other	2026-10-13	Casual. Use dziękuję when being polite.
+dziękuję	dziękuję	2	other	2026-10-13	Literally 'I thank', the -ę is the I-ending of dziękować.
 i	i	3	duolingo	2026-10-09	
 ja	ja	2	duolingo	2026-10-09	
 jabłko	jabłko	3	duolingo	2026-10-09	
@@ -23,6 +22,9 @@ jak	jak	2	duolingo	2026-10-12
 je	jeść	3	duolingo	2026-10-09	
 jedzą	jeść	2	duolingo	2026-10-09	
 jem	jeść	3	duolingo	2026-10-09	
+jest	być	2	duolingo	2026-10-09	
+jestem	być	2	duolingo	2026-10-09	
+jesteś	być	2	duolingo	2026-10-09	
 kobieta	kobieta	3	duolingo	2026-10-09	
 kobiety	kobieta	3	duolingo	2026-10-09	
 kobietą	kobieta	2	duolingo	2026-10-09	
