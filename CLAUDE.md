@@ -40,6 +40,18 @@ the warnings are advisory only; a build never fails because of them.
    Speaker labels are bare uppercase names followed by a colon (`JA:`, `MAYA:`).
 6. **Do not guess `confidence`.** New rows default to 2. Matt sets 1 and 3.
 
+## Keeping GRAMMAR.md current
+
+7. **`GRAMMAR.md` is Matt's one grammar reference. Update it when a rule
+   changes, never otherwise.** It exists to stay tiny: general cases in tables,
+   a short exception list at the bottom. Add to it only when a new rule is
+   actually taught in chat and it generalizes. Do not add a row for a single
+   word, do not expand a table into prose, do not add examples beyond the one
+   already there. If the exception list grows past about six entries, the
+   oldest ones have become general and should be folded into a rule instead.
+   When Matt learns forms that complete a pattern already in the file, the file
+   needs no change.
+
 ## When you edit the vocabulary files
 
 Run `make` afterwards. It validates, then rebuilds `polish.db`. Read the
@@ -55,6 +67,7 @@ db/phrases.md      phrases with their dialogues
 db/build.py        parses the three files above into polish.db
 db/schema.sql      3 tables: known_forms, lemma_notes, phrases
 db/validate.py     soft checks, warnings to stderr, always exits 0
+GRAMMAR.md         Matt's condensed grammar reference, see rule 7
 tokens.py          shared Polish word tokenizer
 reader/            read-only highlighter, ANSI or standalone HTML
 dictionary/         builds and queries dict.db from kaikki.org
