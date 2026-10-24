@@ -77,5 +77,6 @@ dictionary/         builds and queries dict.db from kaikki.org
 
 Matt's global rules in `~/.claude/CLAUDE.md` apply. Shortest version:
 correctness, then KISS, then DRY. No comments unless the code cannot explain
-itself. No em-dashes in any prose. Run `ruff check --fix . && ruff format .`
-after every Python change.
+itself. No em-dashes in any prose. Run `uv run ruff check --fix . && uv run
+ruff format .` after every Python change. Everything runs through `uv`,
+never the system Python.

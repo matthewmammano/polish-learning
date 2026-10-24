@@ -50,6 +50,8 @@ def form_params(record: dict[str, str]) -> dict[str, str | int | None]:
         "conf": int(record.get("conf") or DEFAULT_CONFIDENCE),
         "source": record["source"],
         "learned_on": record["learned_on"],
+        "last_right": record.get("last_right") or None,
+        "last_tested": record.get("last_tested") or None,
         "note": record.get("note") or None,
     }
 

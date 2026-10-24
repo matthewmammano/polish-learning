@@ -4,16 +4,16 @@
 all: polish.db validate
 
 polish.db: db/schema.sql db/forms.tsv db/notes.tsv db/phrases.md
-	@python3 -m db.build
+	@uv run python -m db.build
 
 validate: polish.db
-	@python3 -m db.validate
+	@uv run python -m db.validate
 
 dict.db:
-	python3 -m dictionary.build
+	uv run python -m dictionary.build
 
 lint:
-	ruff check --fix . && ruff format .
+	uv run ruff check --fix . && uv run ruff format .
 
 clean:
 	rm -f polish.db

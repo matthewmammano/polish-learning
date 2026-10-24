@@ -30,8 +30,10 @@ PHRASE_FIELD = "- "
 DIALOGUE_FENCE = "```"
 
 INSERT_FORM_SQL = """
-INSERT INTO known_forms (form, lemma, confidence, source, learned_on, note)
-VALUES (:form, :lemma, :conf, :source, :learned_on, :note)
+INSERT INTO known_forms
+  (form, lemma, confidence, source, learned_on, last_right, last_tested, note)
+VALUES
+  (:form, :lemma, :conf, :source, :learned_on, :last_right, :last_tested, :note)
 """
 INSERT_NOTE_SQL = "INSERT INTO lemma_notes (lemma, note) VALUES (:lemma, :note)"
 INSERT_PHRASE_SQL = """

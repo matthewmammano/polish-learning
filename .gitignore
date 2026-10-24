@@ -4,3 +4,4 @@ export/
 books/
 .ruff_cache/
 stories/
+.venv/
