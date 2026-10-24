@@ -1,6 +1,6 @@
 # Polish rules
 
-General cases only. Exceptions live at the bottom and stay short.
+General cases only. Regular words as examples. `-` means Matt has not learned it yet.
 
 ## 1. Gender = last letter of the dictionary form
 
@@ -10,41 +10,73 @@ General cases only. Exceptions live at the bottom and stay short.
 | `-a` | feminine |
 | `-o` `-e` `-ę` | neuter |
 
-## 2. Anything describing a noun copies its gender
+Masculine splits in two, and this matters for rule 3:
 
-| | masc | fem | neut |
+- **alive**: `kot`, `pies`, `człowiek`
+- **thing**: `ser`, `sok`, `obiad`
+
+## 2. Everything describing a noun copies it
+
+Five slots. Adjectives, `ten` and `tamten` all use the same five.
+
+| slot | adjective | this | that |
 | --- | --- | --- | --- |
-| adjective | `-y` | `-a` | `-e` |
-| this | `ten` | `ta` | `to` |
-| that | `tamten` | `tamta` | `tamto` |
+| masc sg | dobr**y** | `ten` | `tamten` |
+| fem sg | dobr**a** | `ta` | `tamta` |
+| neut sg | dobr**e** | `to` | `tamto` |
+| plural MEN | dobr**zy** | `ci` | `tamci` |
+| plural REST | dobr**e** | `te` | `tamte` |
 
-`dobry ser` · `dobra zupa` · `dobre mleko`
+**MEN** means actual men. **REST** means women, animals, things, and any mixed
+group with no man in it. `kot` is masculine but a cat is not a man, so `koty`
+takes REST: `małe koty`, not `mali`.
 
-Same pattern for every adjective: `nowy, stary, zły, mały, duży, smaczny`.
+You make the call once per noun, then every describer copies it.
+
+Adjectives reuse `-e` for neut sg and plural REST. `to` and `te` do not.
+
+**The MEN slot changes the consonant, not just the ending.** Memorize it.
+
+| | dobry | mały | duży | nowy | stary | zły |
+| --- | --- | --- | --- | --- | --- | --- |
+| MEN | dobr**zy** | ma**li** | du**zi** | no**wi** | star**zy** | **źli** |
 
 ## 3. A noun does one of three jobs
 
-| job | fem | masc | neut |
-| --- | --- | --- | --- |
-| subject (doing it) | zup**a** | pie**s** | dzieck**o** |
-| object (eat/drink/like/have it) | zup**ę** | pie**s** | dzieck**o** |
-| after `jest` | zup**ą** | ps**em** | dzieck**iem** |
+| job | fem `kobieta` | masc alive `kot` | masc thing `ser` | neut `jabłko` |
+| --- | --- | --- | --- | --- |
+| subject | kobiet**a** | kot | ser | jabłk**o** |
+| object (eat/see/have it) | kobiet**ę** `-` | kot**a** `-` | ser | jabłk**o** |
+| after `jest` | kobiet**ą** | kot**em** | ser**em** `-` | jabłk**iem** `-` |
 
-- Object: **only feminine changes**, `-a` → `-ę`
-- After `jest`: **feminine `-ą`, everything else `-em`**
-- `ten`/`ta` follow along. Object feminine is `tę`.
+- **Object:** feminine `-ę`, masculine alive `-a`, everything else unchanged
+- **After `jest`:** feminine `-ą`, everything else `-em`
+- Describers follow. Object feminine is `tę`.
 
-## 4. Pronouns
+## 4. Plural nouns
+
+| | ending | |
+| --- | --- | --- |
+| REST, masc or fem | `-y` | kot**y**, ps**y**, kobiet**y**, ryb**y** |
+| REST, neuter | `-a` | jabłk**a**, zwierzęt**a** |
+| MEN | `-i` or `-y`, stem softens | mężczyź**ni**, chłop**cy** |
+
+Polish never writes `y` after `k` or `g`, so those spell it `-i`: `kanapki`, `kaczki`.
+
+For REST, the object form is the same as the subject form: `Mam psy.`
+After `są`, plural nouns take `-ami`: `kobietami`, `mężczyznami`.
+
+## 5. Pronouns
 
 | | one | many |
 | --- | --- | --- |
 | I / we | `ja` | `my` |
 | you | `ty` | `wy` |
-| he / she / it | `on` `ona` | `oni` `one` |
+| he / she / it | `on` `ona` | `oni` (MEN) `one` (REST) |
 
 All optional. The verb already says who.
 
-## 5. Verbs: one set of endings for every verb
+## 6. Verbs: one set of endings for every verb
 
 | who | ending | `lubić` | `mieć` |
 | --- | --- | --- | --- |
@@ -57,7 +89,7 @@ All optional. The verb already says who.
 
 Verbs never take gender or case. Only who and when.
 
-## 6. `to` vs `jest`
+## 7. `to` vs `jest`
 
 | | |
 | --- | --- |
@@ -65,31 +97,42 @@ Verbs never take gender or case. Only who and when.
 | `Lew jest kotem.` | `jest` charges `-em` |
 | `To jest kot.` | subject is `to`, so `kot` stays plain |
 
-## 7. `czy` makes a yes/no question
+Plural of `jest` is `są`: `Koty są małe.`
+
+**`jest` and `są` only charge nouns, never a bare adjective.**
+
+| after `jest` / `są` | gets | |
+| --- | --- | --- |
+| a noun | `-em` / `-ą`, plural `-ami` | `Lew jest kotem`, `Są mężczyznami` |
+| an adjective | nothing | `Kobieta jest dobra`, `Koty są małe` |
+
+## 8. `czy` makes a yes/no question
 
 Put it in front, change nothing else. `Masz psa.` → `Czy masz psa?`
 
-## 8. Sounds that are not what they look like
+## 9. Sounds that are not what they look like
 
 | | say |
 | --- | --- |
 | `sz` | **sh**, voice off (ca**sh**) |
 | `rz` `ż` | **zh**, voice on (mea**s**ure). No R sound at all. |
 | `cz` | **ch** |
-| `ch` | **h** |
+| `ch` `h` | **h** |
 | `w` | **v** |
 | `ł` | **w** |
 | `j` | **y** |
 | `c` | **ts** |
 | `y` | short **i** (b**i**t) |
-| accent or following `i` (`ś` `si`, `ć` `ci`, `ń` `ni`) | the soft version of the same sound |
+| accent or following `i` (`ś` `si`, `ć` `ci`, `ń` `ni`) | soft version of the same sound |
 
 Squiggle = add an **n**. `ą` = "on", `ę` = "en".
 At the end of a word `ę` goes silent but `ą` keeps its nasal.
+Stress is always the second-to-last syllable.
 
 ## Exceptions
 
 - `mężczyzna` ends in `-a` but is masculine.
-- Masculine food and animals take `-a` as an object anyway: `pomidora`.
 - `być` is the only irregular verb: `jestem, jesteś, jest, jesteśmy, jesteście, są`.
+- `człowiek` has the irregular plural `ludzie`, instrumental `ludźmi`.
+- Masculine food and drink often take `-a` as an object though not alive: `pomidora`.
 - `rz` flips back to "sh" after `p` `t` `k`: `przepraszam` = "psheh-PRA-sham".
